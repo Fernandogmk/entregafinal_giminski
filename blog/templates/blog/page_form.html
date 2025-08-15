@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ view.object|default_if_none:"Nuevo Post" }}{% endblock %}
+{% block content %}
+  <h2>{% if view.object %}Editar Post{% else %}Crear Post{% endif %}</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="msg msg-error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <p>
+      {{ form.title.label_tag }}<br>
+      {{ form.title }}
+      {{ form.title.errors }}
+    </p>
+    <p>
+      {{ form.subtitle.label_tag }}<br>
+      {{ form.subtitle }}
+      {{ form.subtitle.errors }}
+    </p>
+    <p>
+      {{ form.published_at.label_tag }}<br>
+      {{ form.published_at }}
+      {{ form.published_at.errors }}
+    </p>
+    <p>
+      {{ form.image.label_tag }}<br>
+      {{ form.image }}
+      {{ form.image.errors }}
+      {% if form.instance and form.instance.image %}
+        <br><small class="muted">Imagen actual:</small><br>
+        <img src="{{ form.instance.image.url }}" alt="" height="120">
+      {% endif %}
+    </p>
+    <p>
+      {{ form.content.label_tag }}<br>
+      {{ form.content }}
+      {{ form.content.errors }}
+    </p>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    <a class="btn btn-secondary" href="{% url 'blog:page_list' %}">Cancelar</a>
+{% endblock %}

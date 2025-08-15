@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Bandeja de Entrada{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="mb-0">Bandeja de Entrada</h2>
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary btn-sm" href="{% url 'messaging:compose' %}">Nuevo mensaje</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'messaging:sent' %}">Ver enviados</a>
+    </div>
+</div>
+
+
+{% if messages_list %}
+    <div class="row g-4">
+        {% for m in messages_list %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">
+                            {{ m.subject }}
+                        </h5>
+                        <p class="card-text text-muted mb-2">
+                            <strong>De:</strong> {{ m.sender.username }}
+                        </p>
+                        <p class="card-text text-truncate">
+                            {{ m.body|striptags|truncatewords:15 }}
+                        </p>
+                        <a href="{% url 'messaging:detail' m.pk %}" class="btn btn-sm btn-outline-primary">Ver mensaje</a>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <small class="text-muted">Recibido: {{ m.sent_at|date:"d/m/Y H:i" }}</small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">No hay mensajes en tu bandeja de entrada.</div>
+{% endif %}
+{% endblock %}
+

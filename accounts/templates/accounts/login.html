@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <div class="container pb-5">
+    <h2 class="mb-3">Login</h2>
+
+    <form method="post" class="shadow p-4 bg-light rounded">
+      {% csrf_token %}
+      <table class="table align-middle">
+        <tr>
+          <th style="width: 220px;">
+            <label for="id_username" class="form-label mb-0">Usuario</label>
+          </th>
+          <td>
+            <input type="text" name="username" id="id_username" class="form-control" required>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="id_password" class="form-label mb-0">Contraseña</label>
+          </th>
+          <td>
+            <input type="password" name="password" id="id_password" class="form-control" required>
+          </td>
+        </tr>
+      </table>
+
+      <div class="text-center mt-3">
+        <!-- Botones tal cual tu proyecto -->
+        <button class="btn btn-primary" type="submit">Ingresar</button>
+      </div>
+    </form>
+
+    <p class="text-muted mt-3">
+      ¿No tenés cuenta?
+      <a href="{% url 'accounts:signup' %}">Registrate</a>
+    </p>
+  </div>
+{% endblock %}
+

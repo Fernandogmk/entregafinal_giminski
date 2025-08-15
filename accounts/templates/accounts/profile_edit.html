@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Editar perfil{% endblock %}
+{% block content %}
+  <h2>Editar perfil</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="msg msg-error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <p>
+      {{ form.first_name.label_tag }}<br>
+      {{ form.first_name }}
+      {{ form.first_name.errors }}
+    </p>
+    <p>
+      {{ form.last_name.label_tag }}<br>
+      {{ form.last_name }}
+      {{ form.last_name.errors }}
+    </p>
+    <p>
+      {{ form.bio.label_tag }}<br>
+      {{ form.bio }}
+      {{ form.bio.errors }}
+    </p>
+    <p>
+      {{ form.birthday.label_tag }}<br>
+      {{ form.birthday }}
+      {{ form.birthday.errors }}
+    </p>
+    <p>
+      {{ form.avatar.label_tag }}<br>
+      {{ form.avatar }}
+      {{ form.avatar.errors }}
+      {% if request.user.profile.avatar %}
+        <br><small class="muted">Avatar actual:</small><br>
+        <img src="{{ request.user.profile.avatar.url }}" alt="" height="100">
+      {% endif %}
+    </p>
+
+    <button class="btn btn-primary" type="submit">Guardar cambios</button>
+    <a class="btn btn-secondary ms-2" href="{% url 'accounts:profile' %}">Cancelar</a>
+  </form>
+
+  <hr>
+  <p class="muted">
+    ¿Cambiar contraseña? 
+    <a href="{% url 'password_change' %}">Ir al cambio de password</a>
+  </p>
+{% endblock %}

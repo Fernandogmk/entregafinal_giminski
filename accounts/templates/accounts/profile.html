@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+  <h2>Mi perfil</h2>
+  <p><strong>Usuario:</strong> {{ request.user.username }}</p>
+  <p><strong>Email:</strong> {{ request.user.email }}</p>
+  {% if request.user.profile.avatar %}
+    <p><img src="{{ request.user.profile.avatar.url }}" alt="" height="120"></p>
+  {% endif %}
+  <p><strong>Nombre:</strong> {{ request.user.profile.first_name }}</p>
+  <p><strong>Apellido:</strong> {{ request.user.profile.last_name }}</p>
+  <p><strong>Bio:</strong> {{ request.user.profile.bio }}</p>
+  <p><strong>Cumpleaños:</strong> {{ request.user.profile.birthday }}</p>
+  <p><a class="btn btn-secondary ms-2" href="{% url 'accounts:profile_edit' %}">Editar perfil</a></p>
+{% endblock %}

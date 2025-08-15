@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Mensajes Enviados{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2 class="mb-0">Mensajes Enviados</h2>
+        <a class="btn btn-secondary btn-sm" href="{% url 'messaging:inbox' %}">Bandeja de entrada</a>
+    </div>
+
+    {% if messages_list %}
+        <div class="row">
+            {% for m in messages_list %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'messaging:detail' m.pk %}" class="text-decoration-none text-dark">
+                                    {{ m.subject }}
+                                </a>
+                            </h5>
+                            <p class="card-text mb-1">
+                                <strong>Para:</strong> {{ m.recipient.username }}
+                            </p>
+                            <small class="text-muted">
+                                Enviado el {{ m.sent_at|date:"d/m/Y H:i" }}
+                            </small>
+                        </div>
+                        <div class="card-footer bg-white border-0 text-end">
+                            <a href="{% url 'messaging:detail' m.pk %}" class="btn btn-sm btn-outline-primary">
+                                Ver Detalle
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">No tenés mensajes enviados.</div>
+    {% endif %}
+</div>
+{% endblock %}

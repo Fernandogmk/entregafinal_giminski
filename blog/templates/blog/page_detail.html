@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+  <h2>{{ page.title }}</h2>
+  <p class="muted">Publicado el {{ page.published_at|date:"d/m/Y" }}</p>
+
+  {% if page.image %}
+    <div>
+      <img src="{{ page.image.url }}" alt="{{ page.title }}" style="max-width:100%;height:auto;">
+    </div>
+  {% endif %}
+
+  <div>
+    {{ page.content|safe }}
+  </div>
+
+  <hr>
+  <a class="btn btn-secondary" href="{% url 'blog:page_list' %}">Volver a la lista</a>
+
+  {% if user.is_authenticated %}
+    <a class="btn text-white" style="background-color:#8b5a5f;" href="{% url 'blog:page_update' page.pk %}">Editar</a>
+    <a class="btn btn-danger" href="{% url 'blog:page_delete' page.pk %}">Eliminar</a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Acerca de mí{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Acerca de mí</h1>
+
+    <div class="row g-4">
+      <div class="col-12 col-lg-8">
+        <div class="bg-white p-4 rounded-4 shadow-sm border">
+          <p class="text-body-secondary">
+            Ingeniero de profesión y amante del arte por vocación, combina la precisión técnica con la sensibilidad creativa para dar vida a un espacio digital único: un blog colaborativo donde cualquier persona, sin importar su trayectoria o nivel, puede compartir sus obras y expresarse libremente.
+          </p>
+          <p class="text-body-secondary">
+            Su enfoque parte de la creencia de que el arte es un lenguaje universal que debe estar al alcance de todos, y que las ideas, colores y formas son tan valiosas como la historia que hay detrás de cada creador. El blog funciona como una galería abierta y sin fines de lucro, impulsada únicamente por el amor al arte, la curiosidad y el deseo de conectar personas a través de la creatividad.
+          </p>
+          <p class="text-body-secondary mb-0">
+            Fiel a sus raíces de ingeniero, cuida cada detalle técnico para que la plataforma sea accesible, intuitiva y visualmente atractiva, mientras que su lado artístico se refleja en la curaduría y difusión de obras que inspiran, emocionan y promueven la diversidad de estilos y técnicas.
+          </p>
+        </div>
+
+        <figure class="text-center mt-4">
+          <blockquote class="blockquote fs-5">
+            “La ingeniería me enseñó a construir, el arte me enseñó a sentir. Hoy construyo puentes entre ambas.”
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Lema personal
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <!-- Panel lateral opcional: avatar y datos -->
+        <div class="bg-body-tertiary p-4 rounded-4">
+          <h3 class="h6 text-uppercase text-muted">Contacto</h3>
+          <ul class="list-unstyled mb-0 small">
+            <li>Correo: <span class="text-body-secondary">boketto.arte@gmail.com</span></li>
+            <li>Ciudad: <span class="text-body-secondary">Buenos Aires</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

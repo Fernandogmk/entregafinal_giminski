@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+  <h2>Crear cuenta</h2>
+  <form method="post">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="msg msg-error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <p>
+      {{ form.username.label_tag }}<br>
+      {{ form.username }}
+      {{ form.username.errors }}
+    </p>
+    <p>
+      {{ form.email.label_tag }}<br>
+      {{ form.email }}
+      {{ form.email.errors }}
+    </p>
+    <p>
+      {{ form.password1.label_tag }}<br>
+      {{ form.password1 }}
+      {{ form.password1.errors }}
+    </p>
+    <p>
+      {{ form.password2.label_tag }}<br>
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+    </p>
+
+    <button type="submit" class="btn btn-primary">Registrarme</button>
+    <a href="{% url 'accounts:login' %}" class="btn btn-secondary ms-2">Ya tengo cuenta</a>
+
+  </form>
+{% endblock %}

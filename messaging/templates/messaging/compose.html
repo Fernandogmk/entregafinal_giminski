@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Nuevo mensaje{% endblock %}
+{% block content %}
+  <h2>Redactar mensaje</h2>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="msg msg-error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <p>
+      {{ form.recipient.label_tag }}<br>
+      {{ form.recipient }}
+      {{ form.recipient.errors }}
+    </p>
+    <p>
+      {{ form.subject.label_tag }}<br>
+      {{ form.subject }}
+      {{ form.subject.errors }}
+    </p>
+    <p>
+      {{ form.body.label_tag }}<br>
+      {{ form.body }}
+      {{ form.body.errors }}
+    </p>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <a class="btn btn-secondary ms-2" href="{% url 'messaging:inbox' %}">Cancelar</a>
+  </form>
+{% endblock %}
